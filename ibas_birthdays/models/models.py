@@ -1,7 +1,16 @@
 # -*- coding: utf-8 -*-
 
-# from odoo import models, fields, api
+import logging
 
+from odoo import _, api, fields, models
+
+_logger = logging.getLogger(__name__)
+
+
+
+class IBASPartner(models.Model):
+    _inherit = 'res.partner'
+    birthday = fields.Date(string='Birthday')
 
 # class ibas_birthdays(models.Model):
 #     _name = 'ibas_birthdays.ibas_birthdays'
