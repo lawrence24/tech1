@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','stock','sale','sales_team','account'],
+    'depends': ['base','stock','sale','sales_team','account','web'],
 
     # always loaded
     'data': [
@@ -28,6 +28,7 @@
         'views/templates.xml',
         'views/view_order_form.xml',
         'views/view_move_form.xml',
+        'report/report_templates.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
