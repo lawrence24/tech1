@@ -12,6 +12,8 @@ class Tech1StockPicking(models.Model):
         for rec in self:
             rec.pick_line_description = rec.product_id  
     
+    
+    
 
 
 
