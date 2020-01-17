@@ -28,6 +28,7 @@
         'views/templates.xml',
         'views/view_order_form.xml',
         'views/view_move_form.xml',
+        'views/purchase_order.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
     ],
