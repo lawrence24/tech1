@@ -61,6 +61,129 @@
 
 </template>
 
+<template id="ibas_check_voucher">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="ibas_tech1.ibas_external_layout">
+            <t t-set="o" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
+                <div class="page">
+                    <h1>Check Voucher</h1>
+                    <br/>
+                    <br/>
+                   <div class="row">
+                        <div class="col-6">
+                            Payment To: <br/>
+                            <span t-field="doc.partner_id.name"/>
+                        </div>
+                        <div class="col-3">
+                            Date: <br/>
+                            Payment Method: <br/>
+                            Reference No: <br/>
+                        </div>
+                        <div class="col-3">
+                            <span t-field="doc.payment_date"/><br/>
+                            Cheque <br/>
+                            <span t-field="doc.communication"/><br/>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <table border="1" style="height: 42px; width: 85%; border-collapse: collapse; margin-left: auto; margin-right: auto;">
+                        <tbody>
+                            <tr style="height: 21px;">
+                                <td style="width: 33.3333%; height: 21px;"><strong>Account / Item</strong></td>
+                                <td style="width: 33.3333%; height: 21px; text-align: center;"><strong>Description</strong></td>
+                                <td style="width: 33.3333%; height: 21px; text-align: right;padding-right:10px"><strong>Amount</strong></td>
+                            </tr>
+                            <tr style="height: 21px;">
+                                <td style="width: 33.3333%; height: 21px;">
+                                    <p></p>
+                                    <p><span t-field="doc.journal_id.default_credit_account_id.display_name"/><br/></p>
+                                    <p></p>
+                                </td>
+                                <td style="width: 33.3333%; height: 21px; text-align: center;"><span t-field="doc.description"/></td>
+                                <td style="width: 33.3333%; height: 21px; text-align: right; padding-right:10px"><span t-field="doc.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br/><br/><br/>
+
+                     <div class="row">
+                        <div class="col-6">
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="col-3">
+                            TOTAL: <br/>
+                            TOTAL DUE: <br/>
+                        </div>
+                        <div class="col-3">
+                            <span t-field="doc.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+
+                    <br/><br/><br/><br/>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <p style="text-align: center;"><strong>PREPARED BY</strong></p>
+                            <p style="text-align: center;"></p>
+                            <p style="text-align: center;">CMC</p>
+                        </div>
+                        <div class="col-4">
+                            <p style="text-align: center;"><strong>REVIEWED BY</strong></p>
+                            <p style="text-align: center;"></p>
+                            <p style="text-align: center;">JRS</p>
+                        </div>
+                        <div class="col-4">
+                            <p style="text-align: center;"><strong>APPROVED BY</strong></p>
+                            <p style="text-align: center;"></p>
+                            <p style="text-align: center;">JEM/LDM</p>
+                        </div>
+                    </div>
+
+                    <br/><br/><br/><br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class="col-3">
+                            <p style="text-align: right;">Received By:</p>
+                            <p style="text-align: right;">Date:</p>
+                            <br/>
+                        </div>
+                        <div class="col-3">
+                            <p style="text-align: left;">____________________________</p>
+                            <p style="text-align: left;">____________________________</p>
+                            <br/>
+                        </div>
+                    </div>
+
+                </div>
+
+            </t>
+        </t>
+    </t>
+</template>
+
+<report
+    id="action_report_check_voucher"
+    model="account.payment"
+    string="Check Voucher"
+    report_type="qweb-pdf"
+    name="ibas_tech1.ibas_check_voucher"
+    file="ibas_tech1.ibas_check_voucher"
+/>
+
 
 
   <template id="ibas_external_layout">
