@@ -31,6 +31,7 @@
         'views/purchase_order.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
+         'report/report_deliveryslip.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
