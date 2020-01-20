@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="web.external_layout_boxed">
+        <div class="header">
+            <div class="o_boxed_header">
+            
+                    <img src="ibas_tech1/static/src/img/versaletterhead.png" width="100%" alt="Logo"/>
+            
+            </div>
+        </div>
+        <div class="article o_report_layout_boxed" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_boxed_footer">
+            <div class="text-center">
+                 <img src="ibas_tech1/static/src/img/versafooter.png" width="100%" alt="Logo"/>
+                <div t-field="company.report_footer"/>
+                <div t-if="report_type == 'pdf'">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+           
+        </div>
+    </template>
+
+    <template id="report_footer_custom" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//th[@name='th_taxes']" position="before">
+        <th name="th_taxes" class="text-right">Discount (Amt)</th>
+        </xpath>
+
+        <xpath expr="//td[@name='td_taxes']" position="before" >
+        <td name="td_discount_amount" class="text-right">
+            <span t-field="line.discount_incurrency"/>
+        </td>
+        
+        </xpath>
+
+
+    </template>
+
+<template id="ibas_external_layout_boxed">
+        <div class="header">
+        <img src="ibas_tech1/static/src/img/tech1letterhead.png" width="100%" height="120" alt="Logo"/>
+        </div>
+        <div class="article o_report_layout_boxed" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_boxed_footer">
+            <div class="text-center">
+                <div t-field="company.report_footer"/>
+                <div t-if="report_type == 'pdf'">
+                    Page: <span class="page"/> / <span class="topage"/>
+                </div>
+            </div>
+           
+        </div>
+
+</template>
+
+
+
+  <template id="ibas_external_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <t t-esc="company.update_scss()"/>
+        <t t-call="ibas_tech1.ibas_external_layout_boxed"><t t-raw="0"/></t>
+        
+
+    </template>
+
+    
+
+</odoo>
