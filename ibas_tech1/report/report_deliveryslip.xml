@@ -1,6 +1,6 @@
 <odoo>
     <template id="ibas_delivery_slip" inherit_id="stock.report_delivery_document">
-        <xpath expr="//div[@class='page']" position="after">
+        <xpath expr="//div[hasclass('page')]" position="after">
             <div>
             <div style="position:absolute;top:850px;right:100px; page-break-inside: avoid;"> 
                 <p style="text-align: right;"></p>
