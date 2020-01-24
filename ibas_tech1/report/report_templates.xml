@@ -251,7 +251,8 @@
         <t t-call="ibas_tech1.ibas_external_layout_boxed"><t t-raw="0"/></t>
         
 
-    </template>
+
+</template>
 
     
 

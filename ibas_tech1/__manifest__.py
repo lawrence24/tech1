@@ -30,6 +30,7 @@
         'views/view_move_form.xml',
         'views/purchase_order.xml',
         'views/account_payment.xml',
+        'views/stock_picking.xml',
         'report/report_templates.xml',
         'report/purchase_report.xml',
          'report/report_deliveryslip.xml',
