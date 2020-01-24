@@ -26,3 +26,26 @@ class Tech1Sale(models.Model):
                 'price_total': taxes['total_included'],
                 'price_subtotal': taxes['total_excluded'],
             })
+    
+    def _prepare_invoice_line(self):
+        """
+        Prepare the dict of values to create the new invoice line for a sales order line.
+
+        :param qty: float quantity to invoice
+        """
+        self.ensure_one()
+        return {
+            'display_type': self.display_type,
+            'sequence': self.sequence,
+            'name': self.name,
+            'product_id': self.product_id.id,
+            'product_uom_id': self.product_uom.id,
+            'quantity': self.qty_to_invoice,
+            'discount': self.discount,
+            'price_unit': self.price_unit - self.discount_incurrency,
+            'tax_ids': [(6, 0, self.tax_id.ids)],
+            'analytic_account_id': self.order_id.analytic_account_id.id,
+            'analytic_tag_ids': [(6, 0, self.analytic_tag_ids.ids)],
+            'sale_line_ids': [(4, self.id)],
+            'discount_incurrency': self.discount_incurrency,
+        }
