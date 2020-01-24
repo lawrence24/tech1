@@ -2,13 +2,20 @@
     <template id="ibas_delivery_slip" inherit_id="stock.report_delivery_document">
         <xpath expr="//div[hasclass('page')]" position="after">
             <div>
-            <div style="position:absolute;top:850px;right:100px; page-break-inside: avoid;"> 
+                <br/>
+                <br/>
+                <br/>
+                <div> 
                 <p style="text-align: right;"></p>
                 <p style="text-align: right;"></p>
                 <p style="text-align: right;">Received By:___________________</p>
                 <p style="text-align: right;">Date:___________________</p>
                 </div>
             </div>
+        </xpath>
+
+        <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+            <attribute name="t-call">ibas_tech1.ibas_external_layout_dr</attribute>
         </xpath>
     </template>
 </odoo>
