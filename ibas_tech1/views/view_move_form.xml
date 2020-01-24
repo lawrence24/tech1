@@ -9,6 +9,11 @@
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="name" attrs="{'invisible': [('type', 'not in', ('out_invoice', 'out_refund', 'out_receipt'))]}"/>
                 </xpath>
+
+                <!-- <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='discount']" position="before">
+                    <field name="discount_incurrency"/>
+                    
+                </xpath> -->
             </field>
         </record>
 </data>
