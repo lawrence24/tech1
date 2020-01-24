@@ -60,6 +60,20 @@
                     <span class="oe_order_line_price_subtotal" t-field="line.discount_incurrency"/>
                 </td>
             </xpath>
+
+            <xpath expr="//t[@t-foreach='sale_order.amount_by_group']" position="replace">
+                <tr class="border-black" style="border-bottom:1px solid #dddddd;">
+                    <td>
+                        <strong>VAT</strong>
+                    </td>
+                    <td class="text-right">
+                        <span data-id="total_vat" t-field="sale_order.amount_tax" t-options='{"widget": "monetary","display_currency": sale_order.pricelist_id.currency_id}'
+                                    />
+                </td>
+                </tr>
+            </xpath>
+
+
         </template>
 
     </data>
