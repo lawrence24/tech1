@@ -1,0 +1,62 @@
+<odoo>
+    <!--Shoot to Print-->
+    <!-- Print of Statement of Account -->
+    <template id="print_statement_of_account">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                        <p>Statement of Account</p>
+                        <p> 
+                            <span t-field="doc.partner_id"/>
+
+                            <t t-set="o" t-value="doc.with_context(lang=lang)"/>
+                            <t t-set="address">
+                                <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                <div t-if="o.partner_id.vat" class="mt16">
+                                    <t t-if="o.company_id.country_id.vat_label" t-esc="o.company_id.country_id.vat_label" id="inv_tax_id_label"/>
+                                    <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/></div>
+                            </t>
+                         
+                         
+                            <br/>
+
+                            <span t-field="doc.invoice_date"/>
+                            <span t-field="doc.tin"/>
+                            <span t-field="doc.business_name"/>
+
+                            <span t-field="doc.invoice_line_ids.product_id"/>
+
+                            <span t-field="doc.prepared_by"/>
+                            <span t-field="doc.approved_by"/>
+                            <span t-field="doc.received_by"/>
+                        </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- Print of Statement of Account -->
+    <template id="print_sales_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                        <p>Sales Invoice</p>
+
+                        <p>
+                            <span t-field="doc.partner_id"/>
+                            <span t-field="doc.partner_shipping_id"/>
+                            <span t-field="doc.invoice_date"/>
+                            <span t-field="doc.name"/>
+                            <span t-field="doc.invoice_payment_term_id"/>
+
+                            <span t-field="doc.tin"/>
+                            <span t-field="doc.business_name"/>
+                            <span t-field="doc.prepared_by"/>
+                            <span t-field="doc.approved_by"/>
+                            <span t-field="doc.invoice_user_id"/>
+                        </p>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
